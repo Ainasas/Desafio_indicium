@@ -1,0 +1,81 @@
+As analises serão feitas por aqui. (Todas as analises foram codificadas no notebook "Modelo")
+
+Inicialmente, por ser uma tarefa de predição de texto, assumi que o problema seria de Regressão por isso foquei completamente nas relações numericas entre as variaveis.
+
+Analisando a base de dados pude observar alguns fenomenos:
+- Alguns hoteis estavam com o preço zerado e deviam ser corrigidos
+- As ultimas reviews e as reviews por mês contiham 10 mil valores nulos
+- Variaveis de host eram claramente descartaveis para a analise da base
+- A utilização do Bairro_group sozinha era muito superior a junção do Bairro e Bairro_group
+
+As correlações das variaveis numericas com o valor preço eram muita fracas, indicando que modelos simples não teriam uma boa eficacia. Apesar disso eu testei modelos como Regressão linear, Arvore de decisão e Regressão com redes neurais tendo obtido um maximo de 36% de precisão.
+
+Os atributos estavam com o tipo errado:
+- Ultima review estava no formato de data mas estava sendo tratado como objeto
+- Room type era divido em categorias mas estava sendo tratado como objeto
+- Bairro_group era separado por categorias mas estava sendo tratado como objeto
+
+Apos corrigir os erros acima e descobrir a fraca correlação entre eles cheguei na conclusão de usar um modelo mais robusto como o Random Forest.
+
+Respondendo a pergunta do DOC, escolhi o Random Forest pela falta de linearidade das variaveis, exigindo assim um modelo mais randomico para entender as relaçoes e ter uma precisão maior.
+
+O modelo apresentou uma MSE de 54 e uma precisão de 88% 
+
+
+
+As Respostas das perguntas do DOC são (Algumas perguntas também se encontram disponiveis no notebook 'Modelo':
+
+1 - Supondo que uma pessoa esteja pensando em investir em um apartamento para alugar na plataforma, onde seria mais indicada a compra?
+
+	Room near JFK Queen Bed por 47 dol e 629 reviews
+
+2 - O número mínimo de noites e a disponibilidade ao longo do ano interferem no preço?
+	
+	Ambas tem baixo impacto no preço, suas correlações equivalem a 2% (número de noites) e 7% (disponibilidade), temos lugares com disponibilidade de 2 dias e preço a 20 dólares
+
+3 - Existe algum padrão no texto do nome do local para lugares de mais alto valor?
+	
+    Sim, lugares mais baratos possuem nomes que transmitem aconchego e conforto, já lugares mais caros costuma deixar bem claro a luxuria do local.
+
+4 - Explique como você faria a previsão do preço a partir dos dados. Quais variáveis e/ou suas transformações você utilizou e por quê? 
+
+	Como se tratava de uma regressão, procurei a correlação entre as variaveis com o alvo ‘preço’, descartei nomes de host e id’s, assim como a   coluna bairro que possuia muitos nomes que impactam menos que seu correlacionado grupo ‘Bairro_group’.
+
+    Transformei as colunas de ultima_review em datatime e depois timestamp, tornando a variavel mais numerica.
+
+    Transformei o bairro_group e room_type em tipos categoricos pois estavam como objetos, dificultando a conversão deles para numeros
+      
+5 - Qual tipo de problema estamos resolvendo (regressão, classificação)? 
+    
+    Regressão
+
+6 - Qual modelo melhor se aproxima dos dados e quais seus prós e contras? 
+    
+    Random Forest com uma taxa de 87% e 54 de erro medio
+
+7 - Qual medida de performance do modelo foi escolhida e por quê?
+
+	Eu medi o MSE e o R(2) para determinar a precisão do modelo. 
+    Utilizei essas metricas por serem as mais comuns quando se tratam de regressões
+
+8 - Supondo um apartamento com as seguintes características:
+
+{'id': 2595,
+ 'nome': 'Skylit Midtown Castle',
+ 'host_id': 2845,
+ 'host_name': 'Jennifer',
+ 'bairro_group': 'Manhattan',
+ 'bairro': 'Midtown',
+ 'latitude': 40.75362,
+ 'longitude': -73.98377,
+ 'room_type': 'Entire home/apt',
+ 'minimo_noites': 1,
+ 'numero_de_reviews': 45,
+ 'ultima_review': '2019-05-21',
+ 'reviews_por_mes': 0.38,
+ 'calculado_host_listings_count': 2,
+ 'disponibilidade_365': 355}
+
+Qual seria a sua sugestão de preço? 
+
+    O Preço seria algo em torno de 204 dolares.
