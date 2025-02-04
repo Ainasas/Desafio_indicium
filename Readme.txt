@@ -12,6 +12,8 @@ Os seguintes pacotes foram usados e devem ser instalados pelo usuario (As versõ
 A instalação pode ser feita pelo PIP do terminal python utilizando:
 - pip install -r requisitos.txt
 
+O modelo treinado é muito grande por isso disponibilizei um link do arquivo .pkl no meu drive: https://drive.google.com/file/d/1MDWxM9D4zKPjhyEMRDAnDCeQSsQK1PZj/view?usp=drive_link
+
 A execução desse projeto foi feita utilizando jupyter notebooks, esses notebooks podem ser utilizandos em uma file .py, no google collab, em outro jupyter notebook ou no seu gerenciador favorito.
 
 A base se encontra na pasta "Notebooks" junto com o Jupyter notebook principal.
