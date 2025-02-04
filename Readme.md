@@ -16,5 +16,5 @@ O modelo treinado é muito grande por isso disponibilizei um link do arquivo .pk
 
 A execução desse projeto foi feita utilizando jupyter notebooks, esses notebooks podem ser utilizandos em uma file .py, no google collab, em outro jupyter notebook ou no seu gerenciador favorito.
 
-A base se encontra na pasta "Notebooks" junto com o Jupyter notebook principal.
-Os modelos e bases de treinamento criadas se encontram na pasta "Modelos e bases" e podem ser importadas utilizando o pickle 
+A base se encontra no Jupyter notebook principal.
+Os modelos e bases de treinamento criadas se encontram nos arquivos e podem ser importadas utilizando o pickle 
